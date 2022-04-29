@@ -1,0 +1,9 @@
+.bg-fondo{
+    background: blue;
+}
+.formato{
+    border-radius: 31px 31px 31px 31px;
+    -moz-border-radius: 31px 31px 31px 31px;
+    -webkit-border-radius: 31px 31px 31px 31px;
+    border: 0px solid #000000;
+}
