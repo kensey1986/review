@@ -23,6 +23,40 @@ function capturarFormulario(event){
     // const celular = nodoApellido.value;
     const celular = nodoCelular.valueAsNumber;
 
+   /**
+    * nombre no contenga numeros
+    */
+   console.log(nombre.length)
+
+
+   for (let index = 0; index < nombre.length; index++) {
+      const element = nombre[index];
+      if (element === '0' || element === '1') {
+         console.log('encontro uno numero')
+      }
+   }
+
+
+   //  console.log('esto tiene el telefono ', telefono )
+   //  console.log('valor validacion', telefono <=0)
+   // if (telefono === undefined && telefono <=0) {
+   //    console.log('ha ocurrido un error');
+   //    return;
+   // }
+
+
+   // console.log('esto tiene el telefono ', telefono )
+   // console.log('valor validacion 1', !telefono === undefined)
+   // console.log('valor validacion 2', !telefono <=0)
+   // console.log('valor validacion 3', !telefono <=null)
+//    console.log('valor validacion 3', telefono !== 0)
+//    console.log(telefono)
+//   if ((telefono !== 0 && true) || telefono < 100) {
+//       console.log('realizo algo aqui ')
+//   }
+
+
+
     const nodoResultado = document.getElementById("mostrarMisDatos");
 
     // nodoResultado.textContent = 'Nombre: ' + nombre;
