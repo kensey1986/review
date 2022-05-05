@@ -1,70 +1,76 @@
+document.getElementById("formulario").addEventListener("submit", function (event) {
+   capturarFormulario(event);
 
- document.getElementById("formulario").addEventListener("submit", function(event){
-    capturarFormulario(event);
-  
- })
+})
 
 
-function capturarFormulario(event){
-    event.preventDefault();
-    const nodoNombre = document.getElementById("nombre");
-    const nombre = nodoNombre.value;
+function capturarFormulario(event) {
+   event.preventDefault();
+   const nodoNombre = document.getElementById("nombre");
+   const nombre = nodoNombre.value;
 
-    const nodoApellido = document.getElementById("apellido");
-    const apellido = nodoApellido.value;
+   const nodoApellido = document.getElementById("apellido");
+   const apellido = nodoApellido.value;
 
-    const nodoTelefono = document.getElementById("telefono");
-    
-    // const telfono = nodoTelefono.value;
-    const telefono = nodoTelefono.valueAsNumber;
+   const nodoTelefono = document.getElementById("telefono");
 
-    const nodoCelular = document.getElementById("celular");
-    
-    // const celular = nodoApellido.value;
-    const celular = nodoCelular.valueAsNumber;
+   // const telfono = nodoTelefono.value;
+   const telefono = nodoTelefono.valueAsNumber;
+
+   const nodoCelular = document.getElementById("celular");
+
+   // const celular = nodoApellido.value;
+   const celular = nodoCelular.valueAsNumber;
 
    /**
     * nombre no contenga numeros
     */
-   console.log(nombre.length)
 
 
-   for (let index = 0; index < nombre.length; index++) {
-      const element = nombre[index];
-      if (element === '0' || element === '1') {
-         console.log('encontro uno numero')
-      }
-   }
-
-
-   //  console.log('esto tiene el telefono ', telefono )
-   //  console.log('valor validacion', telefono <=0)
-   // if (telefono === undefined && telefono <=0) {
-   //    console.log('ha ocurrido un error');
-   //    return;
+   // for (let index = 0; index < nombre.length; index++) {
+   //    const element = nombre[index];
+   //    if (element === '0' || element === '1' || element==='3') {
+   //       console.log('encontro uno numero')
+   //    }
    // }
 
+   const nodoErrorMsn = document.getElementById("errorMsn");
+   // console.log(nombre.match(/[0-9]/))
 
-   // console.log('esto tiene el telefono ', telefono )
-   // console.log('valor validacion 1', !telefono === undefined)
-   // console.log('valor validacion 2', !telefono <=0)
-   // console.log('valor validacion 3', !telefono <=null)
-//    console.log('valor validacion 3', telefono !== 0)
-//    console.log(telefono)
-//   if ((telefono !== 0 && true) || telefono < 100) {
-//       console.log('realizo algo aqui ')
-//   }
+   const result = validadorText(nombre, nodoErrorMsn);
 
+   // if (result=== true) {
+   //    return;
+   // }
+   const nodoResultado = document.getElementById("mostrarMisDatos");
+   if (result === false) {
+      nodoResultado.setAttribute("class", "bg-danger");
+      nodoResultado.textContent = `Nombre:  ${nombre} Apellido: ${apellido}--- Telefono: ${telefono} `;
+   }
+   console.log(nodoResultado)
+}
 
+// otra funcion aparte
+function validadorText(nombre, nodoErrorMsn) {
+   let resp = false;
 
-    const nodoResultado = document.getElementById("mostrarMisDatos");
-
-    // nodoResultado.textContent = 'Nombre: ' + nombre;
-    nodoResultado.setAttribute("class", "bg-danger");
-    nodoResultado.textContent = `Nombre:  ${nombre} Apellido: ${apellido}--- Telefono: ${telefono} `;
-    console.log(nodoResultado)
+   if (nombre.match(/[0-9]/) || nombre.match(/[?*$%;',`{}[^|&=/#.@_!()<>¡ºª+-]/)) {
+      resp = true;
+      nodoErrorMsn.setAttribute("class", "bg-danger p-2")
+      nodoErrorMsn.textContent = ' Favor No ingresar Numeros ni simbolos en el nombre';
+      setTimeout(() => {
+         // nodoErrorMsn.setAttribute("class", "");
+         // remueven el nodo del dom
+         // nodoErrorMsn.remove()
+         nodoErrorMsn.removeAttribute("class");
+         nodoNombre.value = '';
+         nodoErrorMsn.textContent = '';
+      }, 4000);
 
    }
+
+   return resp;
+}
 
 /**
  * las variables (let, var)
@@ -105,14 +111,14 @@ function capturarFormulario(event){
  * object( { nombrePropiedad: string o number o bulean o otros objetos })
  */
 
- // los arrays son listas de todo tipo de datos []
+// los arrays son listas de todo tipo de datos []
 
 
- /**
-  * en este endPoint htt://localhost:3000/products
-  * aqui crea productos
-  * recibe un objeto
-  * persona.nombre (string)
-  * persona.telefono(string)
-  * persona.edad(number)
-  */
+/**
+ * en este endPoint htt://localhost:3000/products
+ * aqui crea productos
+ * recibe un objeto
+ * persona.nombre (string)
+ * persona.telefono(string)
+ * persona.edad(number)
+ */
